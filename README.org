@@ -1,5 +1,5 @@
 #+TITLE: Random Rotation Random Forests
-Random Rotation Random Forests proposed in [[https://jmlr.org/papers/volume17/blaser16a/blaser16a.pdf][\[1\]]] implemented using =sklearn= Random Forests algorithms.
+Random Rotation Random Forests proposed in [[https://jmlr.org/papers/volume17/blaser16a/blaser16a.pdf][this paper]] implemented using =sklearn='s Random Forests algorithms.
 
 ** Performance example
 [[file:pics/comparison.png]]
@@ -20,5 +20,7 @@ X_train, X_test = [StandardScaler().fit_transform(x) for x in (X_train, X_test)]
 rrrf = RRRandomForestClassifier(n_estimators=200, max_depth=2)
 rrrf.fit(X_train, y_train)
 # Score on training set
-print(rrrf.score(X_test, y_test))
+rrrf.score(X_test, y_test)
 #+end_src
+
+#+RESULTS:
