@@ -1,5 +1,5 @@
 from sklearn.ensemble._forest import ForestClassifier, ForestRegressor
-from .trees import RRDecisionTreeClassifier, RRDecisionTreeRegressor
+from .tree import RRDecisionTreeClassifier, RRDecisionTreeRegressor
 
 class RRRandomForestClassifier(ForestClassifier):
 

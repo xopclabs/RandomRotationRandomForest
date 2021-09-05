@@ -1,6 +1,6 @@
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 from sklearn.utils.extmath import safe_sparse_dot
-from .rotations import random_rotation_matrix
+from .rotation import RandomRotation
 
 
 class RRDecisionTreeClassifier(DecisionTreeClassifier):
@@ -35,14 +35,11 @@ class RRDecisionTreeClassifier(DecisionTreeClassifier):
             ccp_alpha=ccp_alpha)
 
     def rotate(self, X):
-        return safe_sparse_dot(X, self.rotation_matrix)
+        return self.rotater.transform(X)
 
     def fit(self, X, y, sample_weight=None, check_input=True,
             X_idx_sorted="deprecated"):
-        self.rotation_matrix = random_rotation_matrix(
-            X.shape[1],
-            random_state=self.random_state
-        )
+        self.rotater = RandomRotation(random_state=self.random_state).fit(X)
         return super().fit(self.rotate(X), y,
                            sample_weight=sample_weight,
                            check_input=check_input,
@@ -92,14 +89,11 @@ class RRDecisionTreeRegressor(DecisionTreeRegressor):
             )
 
     def rotate(self, X):
-        return safe_sparse_dot(X, self.rotation_matrix)
+        return self.rotater.transform(X)
 
     def fit(self, X, y, sample_weight=None, check_input=True,
             X_idx_sorted="deprecated"):
-        self.rotation_matrix = random_rotation_matrix(
-            X.shape[1],
-            random_state=self.random_state
-        )
+        self.rotater = RandomRotation(random_state=self.random_state).fit(X)
         return super().fit(self.rotate(X), y,
                            sample_weight=sample_weight,
                            check_input=check_input,
