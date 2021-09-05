@@ -1,11 +1,11 @@
 # random-rotation-random-forests
 Random Rotation Random Forests proposed in [this paper](https://jmlr.org/papers/volume17/blaser16a/blaser16a.pdf) implemented using ``sklearn``'s Random Forests classes.
 
-## Performance example
-Below is a demonstration of decision boundaries for vanilla Random Forests and Random Rotation Random Forests. Both models were trained with parameters ``max_depth = 4``, ``n_estimators = 200`` and ``max_features=1``.
+## Effect on decision boundaries and performance
+Below is a demonstration of decision boundaries for vanilla Random Forests and Random Rotation Random Forests. Both models were trained with parameters ``max_depth=4``, ``n_estimators=200`` and ``max_features=1``.
 ![forest comparison](pics/forests.png)
 
-Gradient Boosting Machines can also benefit from random rotations. Here vanilla GBM was trained with parameters ``max_depth = 4``, ``n_estimators = 200``, ``max_features=1`` and rotated version is an ensemble of ``40`` different GBM each with unique random rotated with the following hyperparameters: ``max_depth = 4``, ``n_estimators = 5``, ``max_features=1``. Resulting ensemble consists of ``200 (40 x 5)`` unique trees.
+Gradient Boosting Machines can also benefit from random rotations. Here vanilla GBM was trained with parameters ``max_depth=4``, ``n_estimators=200``, ``max_features=1`` and rotated version is an ensemble of ``40`` different GBM each with unique random rotated with the following hyperparameters: ``max_depth=4``, ``n_estimators=5``, ``max_features=1``. Resulting ensemble consists of ``200 (40 x 5)`` unique trees.
 ![boostings comparison](pics/boostings.png)
 
 ## Usage example
