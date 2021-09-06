@@ -5,6 +5,7 @@ import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils.extmath import safe_sparse_dot
 from sklearn.utils.validation import check_array, check_is_fitted
+from sklearn.utils import check_random_state
 
 
 class BaseRandomRotation(TransformerMixin, BaseEstimator, metaclass=ABCMeta):
@@ -64,7 +65,7 @@ class BaseRandomRotation(TransformerMixin, BaseEstimator, metaclass=ABCMeta):
                                 got {self.n_features} for shape of {X.shape}')
 
         # Get new random generator
-        self.random = np.random.default_rng(self.random_state)
+        self.random = check_random_state(self.random_state)
 
         # Generate a rotation matrix
         self.rotation_matrix_ = self._make_random_rotation()
